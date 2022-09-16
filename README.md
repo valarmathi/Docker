@@ -24,3 +24,10 @@ container - running process built using image.
 dockerfile > build image > deploy the application
 
 
+https://docs.docker.com/engine/install/ubuntu/
+Install docker using the convenience script
+
+
+ sudo docker run docker/whalesay cowsay hello
+ 
+ 
