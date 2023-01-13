@@ -1,0 +1,92 @@
+docker ps
+
+docker ps -a
+
+docker run
+
+docker stop <container-id>
+
+docker rm <container-id>
+
+docker images
+
+docker rmi <image-id>
+
+docker run -d --name webapp <image-id>
+  -d background in detach mode
+  
+------------------------------------
+
+port mapping
+
+  docker run -p 80:5000 <image-id>
+    80 - port in the instance
+    5000 - port in the container
+    from browser we use 80 and it's forwarded to 5000 in container
+    
+  docker run -p 8000:5000 <image-id>
+  
+  docker run -p 8001:5000 <image-id>
+  
+  docker run -p 3306:3306 <image-id>
+  
+  docker run -p 8803:3306 <image-id>
+  
+  
+  ---------
+  
+  docker run mysql
+  
+  docker stop mysql
+  
+  docker rm mysql - when a container is deleted, all the contents inside the container will be deleted.
+  
+  
+  docker run -v /opt/datadir:/var/lib/mysql mysql -- mount the data directory outside of the container and map it to the container so that when the container is removed the data will be retained
+  
+  
+  
+  docker inspect <container-id> --> gives all details including mount, state etc..,
+  
+  docker logs <container-id / name>
+  
+  
+   
+  docker run ubuntu:<append any tag> cat /etc/*release*
+      - runs the command after the container installation cat /etc/*release*
+      
+      
+  docker run ubuntu sleep 100
+      - this doesn't quit and we couldn't come out of the terminal
+      - docker run -d ubuntu sleep 100 / docker stop <container-id> //always run in background
+      
+  docker attach <container-id>
+      - add a container in foreground
+      
+   docker run timer
+   
+   docker run jenkins/jenkins
+      https://hub.docker.com/r/jenkins/jenkins/
+    
+    
+   docker run -p 8080:8080 jenkins/jenkins 
+      - 8080 on vm and 8080 on container
+      - container has to be stopped before doing port mapping
+      - http://20.169.255.34:8080/ --> VMs IP
+      
+   sudo docker run -p 8080:8080 -v /home/azure-user/my_jenkins_data:/var/jenkins_home  jenkins/jenkins
+      - store the jenkins settings in vm itself and not in container
+      
+   sudo docker run -p 8080:8080 -v /home/azure-user/my_jenkins_data:/var/jenkins_home  -u root jenkins/jenkins
+      - pass the username to resolve the permission issue. defined in documentation
+      
+      
+      
+   
+   
+      
+   
+      
+      
+  
+  
