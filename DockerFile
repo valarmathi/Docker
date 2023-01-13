@@ -157,6 +157,8 @@ if __name__ == "__main__":
     
     ==================================
     
+    Containers are not meant to run OS & it is meant to run app
+    
     name of image = webapp-color
     tag of image = lite
     
@@ -165,4 +167,42 @@ if __name__ == "__main__":
     docker run -p 8383:8080 webapp-color:lite
     docker run -p 8383:8080 webapp-color:lite --color=green
     
+    #configure env variables
+    export APP_COLOR=blue
+    #update env variables while running
+    docker run -e APP_COLOR=blue -p 8383:8080 webapp-color:lite 
+    
+    docker inspect <container-id> --> to get all the env variables configured in container in the config section.
+    
+    docker run  -e APP_COLOR=blue -p 38282:8080 kodekloud/simple-webapp --name blue-app
+    
+    docker run --name mysql-db -e MYSQL_ROOT_PASSWORD=db_pass123 -d mysql
+
+docker attach 102bcebf8526
+    
      ==================================
+     
+     
+     
+     FROM ubuntu
+     CMD sleep 5
+     CMD ["sleep","5"] //add list of arguments
+     ========================================
+     
+     ENTRYPOINT ["sleep"]
+     
+     docker run ubuntu-sleeper 10 --> the command will be sleep 10. entrypoint + cmd-line-arg-value
+     ========================================
+     ENTRYPOINT ["sleep"]
+     CMD ["5"]
+     
+     docker run ubuntu-sleeper --> the command will be "sleep 5". entrypoint + default-cmd-value. for default value, only json format arg are expected for entrypoint and cmd
+     docker run ubuntu-sleeper 15 --> the command will be "sleep 15"
+     ========================================
+     Override entrypoint command
+     
+     docker run --entrypoint sleep2.0 ubuntu-sleeper 15   --> instead of sleep command sleep2.0 will be used
+     
+     
+     
+     
