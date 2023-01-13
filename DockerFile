@@ -1,0 +1,70 @@
+Docker is build in layers
+  - OS
+  - Change in apt packages
+  - Change in pip packages
+  - Source code
+  - Update entrypoint in 'flask' command
+  
+  
+When an execution fails in Layer3, Only the layer below that will re-run. Others will be taken from the cache.
+
+https://github.com/mmumshad/simple-webapp
+
+
+docker run -it ubuntu bash
+  run and connect to the container
+
+apt-get update
+
+apt-get install -y python3
+
+apt-get install -y python3-pip
+
+pip install flask
+
+pip install flask-mysql
+
+cat > /opt/app.py
+  - copy the cource code
+  
+FLASK_APP=app.py flask run --host=0.0.0.0
+  - from the /opt folder
+  
+Map the port so that we cna access this app from the web browser of the laptop. without this mapping, we can access the app only from the VM's web browser and not the system's.
+
+
+======================
+
+create DockerFile - builds an image which can be published in docker hub
+
+1. write down all the instructions in notepad
+#create app.py in the same folder wherr you have Dockerfile
+
+FROM ubuntu
+
+RUN apt-get update
+RUN apt-get install -y python3
+RUN apt-get install -y python3-pip
+RUN pip install flask
+
+COPY app.py /opt/app.py
+
+ENTRYPOINT FLASK_APP=app.py flask run --host=0.0.0.0
+
+=======================
+
+docker build .
+docker build . -t my-simple-webapp    #give a tag for the image
+
+docker build . -t valar/my-simple-webapp  #create an image out of this and only that can be pushed to docker hub.
+
+docker push valar/my-simple-webapp
+
+
+
+
+
+
+
+
+
