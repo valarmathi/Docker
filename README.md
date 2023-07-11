@@ -29,5 +29,9 @@ Install docker using the convenience script
 
 
  sudo docker run docker/whalesay cowsay hello
- 
+
+
+ run docker with environment options 
+
+ docker run -d --name=mysql-db -e MYSQL_ROOT_PASSWORD=password mysql
  
