@@ -28,8 +28,8 @@ docker run -d --name=db postgres:9.4
 deploy worker
 
 cd worker -> create docker image for worker
-
-docker build . -t worker-app
+docker buildx build --platform "linux/amd64" . -t worker-app
+###docker build . -t worker-app
 
 docker images
 
@@ -48,4 +48,10 @@ docker images
 docker run -p 5001:80 --link db:db result-app
 
 
+
+Note: All the above manual commands can be combined using docker-compose to create all the containers.
+
+
+Docker Compose is a tool that was developed to help define and share multi-container applications. 
+With Compose, we can create a YAML file to define the services and with a single command, can spin everything up or tear it all down.
 
