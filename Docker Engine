@@ -1,0 +1,24 @@
+Docker CLI [Interacts with REST api internally to do the operations] --> REST API [Interacts with docker engine to create images, containers etc..,] 
+--> Docker Engine [Maintains daemons, containers, images etc..,] 
+
+Docker uses Namespaces to run the services as containers in the host and provide isolation between containers.
+
+eg:- process_id PID namespace
+
+Linux boots up with the PID of 1. PID=1 is the root process and all the child processes run under it. 
+Two processes cannot have the same PID. 
+
+But to differentiate 2 containers, each container will have a PID of 1. This containerization is achieved by namespace.
+eg:- PID 5 in main host is mapped to PID 1 in container
+     PID 6 in main host is mapped to PID 2 in container which is a child process inside container
+
+Linux:
+PID 1 --> 2 3 4 5 6
+PID 5 --> Container
+PID 6 --> child process inside container
+
+How container can see?
+PID1 -> Parent [mapped to pid 5 of linux host]
+PID2 --> child [mapped to pid 6 of linux host]
+      
+
