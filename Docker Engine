@@ -22,3 +22,7 @@ PID1 -> Parent [mapped to pid 5 of linux host]
 PID2 --> child [mapped to pid 6 of linux host]
       
 
+To restrict the docker from utilizing the features from the main host, we can run docker commands as below
+
+docker run --cpus=.5 ubuntu
+docker run --memory=.5 ubuntu
