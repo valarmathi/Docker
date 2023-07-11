@@ -34,4 +34,9 @@ Install docker using the convenience script
  run docker with environment options 
 
  docker run -d --name=mysql-db -e MYSQL_ROOT_PASSWORD=password mysql
- 
+
+
+ $ docker run -v /opt/data:/var/lib/mysql -d --name=mysql-db -e MYSQL_ROOT_PASSWORD=db_pass123 mysql
+
+
+ docker exec mysql-db mysql -pdb_pass123 -e 'use foo; select * from myTable'
